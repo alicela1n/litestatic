@@ -1,4 +1,4 @@
-# Nanoweb
+# Litestatic
 Tiny lightweight static site generator written in Python that uses markdown and liquid to generate a website.
 
 # How it works
