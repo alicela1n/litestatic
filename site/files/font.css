@@ -1,0 +1,80 @@
+@font-face {
+    font-family: 'FantasqueSansMonoBold';
+        src: url('/assets/fantasque-sans-mono/FantasqueSansMono-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+      }
+
+@font-face {
+    font-family: 'FantasqueSansMonoBoldItalic';
+        src: url('/assets/fantasque-sans-mono/FantasqueSansMono-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+      }
+
+@font-face {
+    font-family: 'FantasqueSansMonoItalic';
+        src: url('/assets/fantasque-sans-mono/FantasqueSansMono-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+      }
+
+@font-face {
+    font-family: 'FantasqueSansMonoRegItalic';
+        src: url('/assets/fantasque-sans-mono/FantasqueSansMono-RegItalic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+      }
+
+@font-face {
+    font-family: 'FantasqueSansMonoRegular';
+        src: url('/assets/fantasque-sans-mono/FantasqueSansMono-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+      }
+
+ /* The following rules are deprecated. */ 
+
+@font-face {
+    font-family: 'Fantasque Sans Mono';
+        src: url('/assets/fantasque-sans-mono/FantasqueSansMono-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+      }
+
+
+
+@font-face {
+    font-family: 'Fantasque Sans Mono';
+        src: url('/assets/fantasque-sans-mono/FantasqueSansMono-BoldItalic.ttf') format('truetype');
+    font-weight: bold;
+    font-style: italic;
+      }
+
+
+
+@font-face {
+    font-family: 'Fantasque Sans Mono';
+        src: url('/assets/fantasque-sans-mono/FantasqueSansMono-Italic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+      }
+
+
+
+@font-face {
+    font-family: 'Fantasque Sans Mono';
+        src: url('/assets/fantasque-sans-mono/FantasqueSansMono-RegItalic.ttf') format('truetype');
+    font-weight: normal;
+    font-style: italic;
+      }
+
+
+
+@font-face {
+    font-family: 'Fantasque Sans Mono';
+        src: url('/assets/fantasque-sans-mono/FantasqueSansMono-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+      }
+

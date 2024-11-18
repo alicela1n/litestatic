@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% render 'head.html' %}
+  </head>
+  <body>
+    <h1>{{ post_title }}</h1>
+    <h5>Published on: {{ post_date | date: "%B %d, %Y" }}</h5>
+    {{ post_html }}
+  </body>
+  {% render 'copyright.html' %}
+</html>
+
