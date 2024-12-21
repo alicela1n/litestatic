@@ -17,6 +17,10 @@ body {
     height: auto;
 }
 
+.highlight {
+    color: #fefefe;
+}
+
 img {
     max-width: 100%;
     height: auto;
