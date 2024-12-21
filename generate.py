@@ -68,7 +68,7 @@ def generate_posts(site_directory, posts_directory):
             # Remove the extension from the post name
             post_name = str(post.with_suffix(''))
             # Remove the site_directory and post_directory from the post name
-            post_name = post_name.partition('/')[3]
+            post_name = post_name.partition('/')[2]
 
             post_buffer = frontmatter.load(md_file)
             post_title = post_buffer['title']
