@@ -49,7 +49,7 @@ def generate_html_pages(site_directory, templates_directory, output_directory):
             page_buffer = frontmatter.load(md_file)
             page_body = markdown.convert(page_buffer.content)
             page_name = str(page.with_suffix(''))
-            page_name = page_name.partition('/')[2]
+            page_name = page_name.split('/')[1]
 
         if not page_name == "index": # Exclude index
             if not os.path.exists(f"{output_directory}/{page_name}"):
@@ -69,7 +69,8 @@ def generate_posts(site_directory, posts_directory):
             # Remove the extension from the post name
             post_name = str(post.with_suffix(''))
             # Remove the site_directory and post_directory from the post name
-            post_name = post_name.partition('/')[2]
+            post_name = post_name.split('/')[2]
+            print(post_name)
 
             post_buffer = frontmatter.load(md_file)
             post_title = post_buffer['title']
