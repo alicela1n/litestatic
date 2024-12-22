@@ -19,6 +19,8 @@ body {
 
 .highlight {
     color: #fefefe;
+    padding: 10px;
+    background: #292b33;
 }
 
 .n {
