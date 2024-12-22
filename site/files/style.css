@@ -21,6 +21,26 @@ body {
     color: #fefefe;
 }
 
+.n {
+    color: #df65de;
+}
+
+.k, .kt {
+    color: #8cf683;
+}
+
+.c1, .cm {
+    color: #a6fcfc;
+}
+
+.cp {
+    color: #ea4696;
+}
+
+.cpf {
+    color: #ffff00;
+}
+
 img {
     max-width: 100%;
     height: auto;

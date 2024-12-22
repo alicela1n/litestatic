@@ -8,6 +8,7 @@ import shutil
 import frontmatter
 import datetime
 markdown = Markdown(extensions=['codehilite'])
+import pygments
 
 # Each post is a markdown file which gets parsed into an object which contains it's metadata, date,
 # and HTML content (converted from the Markdown).
