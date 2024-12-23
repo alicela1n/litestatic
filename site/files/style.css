@@ -18,6 +18,7 @@ body {
 }
 
 .highlight {
+    overflow-x: auto;
     color: #fefefe;
     padding: 10px;
     background: #292b33;
