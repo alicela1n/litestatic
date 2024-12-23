@@ -70,7 +70,6 @@ def generate_posts(site_directory, posts_directory):
             post_name = str(post.with_suffix(''))
             # Remove the site_directory and post_directory from the post name
             post_name = post_name.split('/')[2]
-            print(post_name)
 
             post_buffer = frontmatter.load(md_file)
             post_title = post_buffer['title']
