@@ -120,6 +120,16 @@ def copy_files_to_out(site_directory, files_directory, output_directory):
 
 # main(): Main function
 def main():
+    site_directory = "site"
+    posts_directory = "posts"
+    files_directory = "files"
+    templates_directory = "templates"
+
+    if not os.path.exists(site_directory):
+        print("No site directory found!")
+        print("Provide a site directory or use the following command to make one from the template: cp site_template site")
+        exit();
+
     output_directory = "out"
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
@@ -128,12 +138,7 @@ def main():
         config = yaml.safe_load(Path("config.yaml").read_text()) # Read the config file
     else:
         config = yaml.safe_load(Path("config_template.yaml").read_text()) # Fall back to config_template.yaml
-
-    site_directory = "site"
-    posts_directory = "posts"
-    files_directory = "files"
-    templates_directory = "templates"
-
+    
     generate_index_page(site_directory, templates_directory, output_directory)
     generate_html_pages(site_directory, templates_directory, output_directory)
 
