@@ -9,6 +9,7 @@ import frontmatter
 import datetime
 markdown = Markdown(extensions=['codehilite'])
 import pygments
+import yaml
 
 # Each post is a markdown file which gets parsed into an object which contains it's metadata, date,
 # and HTML content (converted from the Markdown).
@@ -123,6 +124,8 @@ def main():
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
 
+    config = yaml.safe_load(Path("config.yaml").read_text()) # Read the config file
+
     site_directory = "site"
     posts_directory = "posts"
     files_directory = "files"
@@ -130,9 +133,12 @@ def main():
 
     generate_index_page(site_directory, templates_directory, output_directory)
     generate_html_pages(site_directory, templates_directory, output_directory)
-    posts = generate_posts(site_directory, posts_directory)
-    generate_post_files(posts, site_directory, templates_directory, posts_directory, output_directory)
-    generate_post_index(posts, site_directory, templates_directory, posts_directory, output_directory)
+
+    if config["blog_post_generation"]:
+        posts = generate_posts(site_directory, posts_directory)
+        generate_post_files(posts, site_directory, templates_directory, posts_directory, output_directory)
+        generate_post_index(posts, site_directory, templates_directory, posts_directory, output_directory)
+
     copy_files_to_out(site_directory, files_directory, output_directory)
 
 if __name__ == '__main__':
