@@ -2,7 +2,7 @@
 Tiny lightweight static site generator written in Python that uses markdown and liquid to generate a website.
 
 # How it works
-The way it works is simple by design. The site is contained in the site directory, and the files in the site directory should be modifed for your website. The templates folder contains [liquid](https://shopify.github.io/liquid/) templates for generating the skeleton of the webpage. [Markdown](https://www.markdownguide.org/) is used for the webpage contents. The index.md is the markdown file that generates the front page of the website.
+The way it works is simple by design. The `generate.py` script checks for a `site` directory, which is your website's source directory. A template `site_template` is provided as a submodule, which can be copied (**must be named `site`**) and modified for your site. The `site/templates` directory contains [liquid](https://shopify.github.io/liquid/) templates for generating the html skeleton of your website. [Markdown](https://www.markdownguide.org/) is used for the webpage contents. The index.md is the markdown file that generates the front page of the website.
 
 Update: As of 03/05/2025 the `site/` directory is now a submodule.
 
