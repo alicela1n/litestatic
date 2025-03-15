@@ -1,4 +1,4 @@
 out
-site/posts/draft_posts/*
+site
 .DS_Store
 __pycache__
