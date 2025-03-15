@@ -1,4 +1,3 @@
 [submodule "site"]
 	path = site
 	url = https://gitlab.com/alicela1n/litestatic-site.git
-	ignore = dirty
