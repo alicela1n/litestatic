@@ -2,3 +2,4 @@ marko
 python-frontmatter
 python-liquid
 pygments
+yaml
