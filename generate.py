@@ -124,7 +124,10 @@ def main():
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
 
-    config = yaml.safe_load(Path("config.yaml").read_text()) # Read the config file
+    if os.path.isfile("config.yaml"):
+        config = yaml.safe_load(Path("config.yaml").read_text()) # Read the config file
+    else:
+        config = yaml.safe_load(Path("config_template.yaml").read_text()) # Fall back to config_template.yaml
 
     site_directory = "site"
     posts_directory = "posts"
