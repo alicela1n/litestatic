@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from marko import Markdown
 from pathlib import Path
 from liquid import Template
