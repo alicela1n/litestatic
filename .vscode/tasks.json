@@ -15,6 +15,14 @@
                 "kind": "build",
                 "isDefault": true
             }
+        },
+        {
+            "label": "Launch Python Web Server",
+            "type": "shell",
+            "command": "python3 -m http.server -d out",
+            "options": {
+                "cwd": "${workspaceFolder}"
+            }
         }
     ]
 }
