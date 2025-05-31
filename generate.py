@@ -136,7 +136,7 @@ def main():
         os.makedirs(output_directory)
 
     if os.path.isfile("config.yaml"):
-        config = yaml.safe_load(Path("config.yaml").read_text()) # Read the config file
+        config = yaml.safe_load(Path(f"{site_directory}/config.yaml").read_text()) # Read the config file
     else:
         config = yaml.safe_load(Path("config_template.yaml").read_text()) # Fall back to config_template.yaml
     
