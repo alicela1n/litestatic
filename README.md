@@ -37,9 +37,9 @@ $ cp site-template site
 
 Next, edit the site how you see fit
 
-Finally, run `generate.py` to generate a website:
+Finally, run `litestatic.py` to generate a website:
 ```
-$ python3 generate.py
+$ python3 litestatic.py
 ```
 
 To view your website locally, run a web server:
