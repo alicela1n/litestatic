@@ -61,7 +61,6 @@ def generate_html_pages(site_directory, templates_directory, output_directory):
             else:
                 template = env.get_template("page.html")
 
-
             with open(f"{output_directory}/{page_name}/index.html", "w") as output_file:
                 print(f"Generating {output_directory}/{page_name}/index.html")
                 output_file.write(template.render(page_body=page_body,))
