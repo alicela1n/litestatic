@@ -147,7 +147,7 @@ def main():
     generate_index_page(site_directory, templates_directory, output_directory)
     generate_html_pages(site_directory, templates_directory, output_directory)
 
-    if config["blog_post_generation"] == "True":
+    if config["blog_post_generation"] == True:
         posts = generate_posts(site_directory, posts_directory)
         generate_post_files(posts, site_directory, templates_directory, posts_directory, output_directory)
         generate_post_index(posts, site_directory, templates_directory, posts_directory, output_directory)
