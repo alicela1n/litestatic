@@ -40,7 +40,6 @@ def generate_index_page(site_directory, templates_directory, output_directory):
 # generate_html_pages(): Produce the HTML pages out of markdown files that will make up the site
 def generate_html_pages(site_directory, templates_directory, output_directory):
     env = Environment(loader=FileSystemLoader(f"{site_directory}/{templates_directory}/"))
-    template = env.get_template("page.html")
 
     if not os.path.exists(f"{output_directory}"):
         os.makedirs(f"{output_directory}")
@@ -56,6 +55,12 @@ def generate_html_pages(site_directory, templates_directory, output_directory):
         if not page_name == "index": # Exclude index
             if not os.path.exists(f"{output_directory}/{page_name}"):
                 os.makedirs(f"{output_directory}/{page_name}")
+            
+            if os.path.exists(f"{site_directory}/{templates_directory}/{page_name}.html"):
+                template = env.get_template(f"{page_name}.html")
+            else:
+                template = env.get_template("page.html")
+
 
             with open(f"{output_directory}/{page_name}/index.html", "w") as output_file:
                 print(f"Generating {output_directory}/{page_name}/index.html")
