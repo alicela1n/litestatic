@@ -11,6 +11,7 @@ import datetime
 markdown = Markdown(extensions=['codehilite'])
 import pygments
 import yaml
+import argparse
 
 # Each post is a markdown file which gets parsed into an object which contains it's metadata, date,
 # and HTML content (converted from the Markdown).
@@ -124,15 +125,15 @@ def copy_files_to_out(site_directory, files_directory, output_directory):
     shutil.copytree(f"{site_directory}/{files_directory}", output_directory, symlinks=False, ignore=None, copy_function=shutil.copy2, ignore_dangling_symlinks=False, dirs_exist_ok=True)
 
 # main(): Main function
-def main():
-    site_directory = "site"
-    posts_directory = "posts"
+def main(arguments):
+    site_directory = args.site_directory
+    posts_directory = args.output_directory
     files_directory = "files"
     templates_directory = "templates"
 
     if not os.path.exists(site_directory):
         print("No site directory found!")
-        print("Provide a site directory or use the following command to make one from the template: cp site_template site")
+        print("Provide a site directory or create one using the site_template!")
         exit();
 
     output_directory = "out"
@@ -155,4 +156,8 @@ def main():
     copy_files_to_out(site_directory, files_directory, output_directory)
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser()
+    parser.add_argument("site_directory", type=str, help="The website source directory to be generated")
+    parser.add_argument("output_directory", type=str, help="The directory to output the generated website")
+    args = parser.parse_args()
+    main(args)

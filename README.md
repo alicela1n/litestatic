@@ -4,10 +4,9 @@
 Tiny lightweight static site generator written in Python that uses markdown and liquid to generate a website.
 
 # How it works
-The way it works is simple by design. The `generate.py` script checks for a `site` directory, which is your website's source directory. A template `site_template` is provided as a submodule, which can be copied (**must be named `site`**) and modified for your site. The `site/templates` directory contains [liquid](https://shopify.github.io/liquid/) templates for generating the html skeleton of your website. [Markdown](https://www.markdownguide.org/) is used for the webpage contents. The index.md is the markdown file that generates the front page of the website.
+The way it works is simple by design. The `generate.py` script checks for a `site` directory, which is your website's source directory. A template `site_template` is provided as a submodule, which can be copied and modified for your site. The `(site_directory)/templates` directory contains [liquid](https://shopify.github.io/liquid/) templates for generating the html skeleton of your website. [Markdown](https://www.markdownguide.org/) is used for the webpage contents. The index.md is the markdown file that generates the front page of the website.
 
-You can put markdown files in the `site/` directory and have them generated as `site/(page name)`.
-You can also have blog-style posts by putting markdown files in the `site/posts/` directory.
+You can put markdown files in the site directory directory and have them generated as `(site_directory)/(page name)`. You can also put html in the markdown files and it will render in the body.To customize the html outside the body use templates. For javascript you can source your scripts either in the markdown files or html template. You can also have blog-style posts by putting markdown files in the `site/posts/` directory.
 
 The name for the posts needs to be formatted as: `posts/YYYY-MM-DD-title.md`.
 
@@ -19,9 +18,9 @@ date: YYYY-MM-DD HH:mm
 
 Posts will be indexed in `/posts` which you can link in index.md or anywhere else.
 
-The `site/files/` directory is for any miscellaneous files that get copied to the output directory `out/`.
+The `(site_directory)/files/` directory is for any miscellaneous files that get copied to the output directory `out/`.
 
-The generated website is outputted to `out/` ready to be deployed to a web server or wherever.
+The generated website is outputted to the output directory ready to be deployed to a web server or wherever.
 
 # How to use
 First you need to install the requirements:
@@ -39,11 +38,10 @@ Next, edit the site how you see fit
 
 Finally, run `litestatic.py` to generate a website:
 ```
-$ python3 litestatic.py
+$ python3 litestatic.py (site_directory) (output_directory)
 ```
 
 To view your website locally, run a web server:
 ```
-$ python3 -m http.server -d out
+$ python3 -m http.server -d (output_directory)
 ```
-
