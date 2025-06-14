@@ -127,7 +127,7 @@ def copy_files_to_out(site_directory, files_directory, output_directory):
 # main(): Main function
 def main(arguments):
     site_directory = args.site_directory
-    posts_directory = args.output_directory
+    posts_directory = "posts"
     files_directory = "files"
     templates_directory = "templates"
 
