@@ -23,7 +23,7 @@ class Post:
         self.html = html
 
 # generate_index_page(): Produce the index.html file which will be the front page of the website
-def generate_index_page(site_directory, templates_directory, output_directory):
+def generate_index_page(index_page_title, site_directory, templates_directory, output_directory):
     env = Environment(loader=FileSystemLoader(f"{site_directory}/{templates_directory}/"))
     template = env.get_template("index.html")
 
@@ -36,7 +36,7 @@ def generate_index_page(site_directory, templates_directory, output_directory):
 
     with open(f"{output_directory}/index.html", "w") as output_file:
         print(f"Generating {output_directory}/index.html")
-        output_file.write(template.render(index_body=index_body,))
+        output_file.write(template.render(page_title=index_page_title,index_body=index_body,))
 
 # generate_html_pages(): Produce the HTML pages out of markdown files that will make up the site
 def generate_html_pages(site_directory, templates_directory, output_directory):
@@ -64,7 +64,7 @@ def generate_html_pages(site_directory, templates_directory, output_directory):
 
             with open(f"{output_directory}/{page_name}/index.html", "w") as output_file:
                 print(f"Generating {output_directory}/{page_name}/index.html")
-                output_file.write(template.render(page_body=page_body,))
+                output_file.write(template.render(page_title=page_name, page_body=page_body,))
 
 # generate_posts(): Produce an array of post objects
 def generate_posts(site_directory, posts_directory):
@@ -101,7 +101,7 @@ def generate_post_files(posts, site_directory, templates_directory, posts_direct
 
         with open(f"{output_directory}/{posts_directory}/{post.name}/index.html", "w") as output_file:
             print(f"Generating {output_directory}/{posts_directory}/{post.name}")
-            output_file.write(template.render(post_title=post.title, post_date=post.date, post_html=post.html,))
+            output_file.write(template.render(page_title=post.title, post_title=post.title, post_date=post.date, post_html=post.html,))
 
 # generate_post_index(): Generate the post index
 def generate_post_index(posts, site_directory, templates_directory, posts_directory, output_directory):
@@ -145,7 +145,8 @@ def main(arguments):
     else:
         config = yaml.safe_load(Path("config_template.yaml").read_text()) # Fall back to config_template.yaml
     
-    generate_index_page(site_directory, templates_directory, output_directory)
+    index_page_title = config["index_page_title"]
+    generate_index_page(index_page_title, site_directory, templates_directory, output_directory)
     generate_html_pages(site_directory, templates_directory, output_directory)
 
     if config["blog_post_generation"] == True:
