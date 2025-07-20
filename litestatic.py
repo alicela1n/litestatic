@@ -118,7 +118,7 @@ def generate_post_index(posts, site_directory, templates_directory, posts_direct
 
     with open(f"{output_directory}/{posts_directory}/index.html", "w") as output_file:
         print(f"Generating {output_directory}/{posts_directory}/index.html")
-        output_file.write(template.render(**posts_data))
+        output_file.write(template.render(page_title="Posts", **posts_data))
 
 # copy_files_to_out(): Copy the files in the files directory to the output directory
 def copy_files_to_out(site_directory, files_directory, output_directory):
