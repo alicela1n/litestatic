@@ -83,7 +83,6 @@ def generate_posts(site_directory, posts_directory):
             post_title = post_buffer['title']
             post_date = post_buffer['date']
             post_html = markdown.convert(post_buffer.content)
-
             posts.append(Post(post_name, post_title, post_date, post_html))
 
     return posts
@@ -127,19 +126,16 @@ def generate_rss_feed(posts, feed_title, feed_description, site_url, language, o
     feed.title(feed_title)
     feed.description(feed_description)
     feed.language(language)
-    feed.id(f"{site_url}/posts/rss")
-    feed.link( href=f"{site_url}/posts", rel='self')
+    feed.id(f"posts")
+    feed.link( href=f"{site_url}/{posts_directory}", rel='self')
     for post in posts:
         feed_entry = feed.add_entry()
-        feed_entry.id(f"{site_url}/{posts_directory}/rss/{posts.index(post)}")
+        feed_entry.id(f"{post.name}")
         feed_entry.title(post.title)
-        feed_entry.description(post.title)
-        feed_entry.link(href=f"{site_url}/{posts_directory}/{post.name}")
+        feed_entry.description(post.html)
+        feed_entry.link(href=f"{posts_directory}/{post.name}")
 
-    if not os.path.exists(f"{output_directory}/{posts_directory}/rss"):
-        os.makedirs(f"{output_directory}/{posts_directory}/rss")
-
-    feed.rss_file(f"{output_directory}/{posts_directory}/rss/rss.xml", pretty=True)
+    feed.rss_file(f"{output_directory}/{posts_directory}/rss.xml", pretty=True)
 
 # copy_files_to_out(): Copy the files in the files directory to the output directory
 def copy_files_to_out(site_directory, files_directory, output_directory):
@@ -180,7 +176,7 @@ def main(arguments):
         language = config["language"]
         feed_description = config["feed_description"]
         if not index_page_title:
-            index_page_title = "site_url"
+            index_page_title = f"{site_url}"
         generate_rss_feed(posts, index_page_title, feed_description, site_url, language, output_directory, site_directory, posts_directory)
 
     copy_files_to_out(site_directory, files_directory, output_directory)
