@@ -145,7 +145,6 @@ def copy_files_to_out(site_directory, files_directory, output_directory):
 # main(): Main function
 def main(arguments):
     site_directory = args.site_directory
-    posts_directory = "posts"
     files_directory = "files"
     templates_directory = "templates"
 
@@ -168,6 +167,11 @@ def main(arguments):
     generate_html_pages(site_directory, templates_directory, output_directory)
 
     if config["blog_post_generation"] == True:
+        if config["posts_directory"]:
+            posts_directory = config["posts_directory"]
+        else:
+            posts_directory = "posts"
+
         posts = generate_posts(site_directory, posts_directory)
         generate_post_files(posts, site_directory, templates_directory, posts_directory, output_directory)
         generate_post_index(posts, site_directory, templates_directory, posts_directory, output_directory)
