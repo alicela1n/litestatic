@@ -20,7 +20,7 @@ class Post:
     def __init__(self, name, title, date, html):
         self.name = name
         self.title = title
-        self.date = datetime.datetime.strptime(date, '%Y-%m-%d %H:%M')
+        self.date = datetime.datetime.strptime(date, '%Y-%m-%d %H:%M').replace(tzinfo=datetime.timezone.utc)
         self.html = html
 
 # generate_index_page(): Produce the index.html file which will be the front page of the website
@@ -133,6 +133,7 @@ def generate_rss_feed(posts, feed_title, feed_description, site_url, language, o
         feed_entry.id(f"{post.name}")
         feed_entry.title(post.title)
         feed_entry.description(post.html)
+        feed_entry.pubDate(post.date)
         feed_entry.link(href=f"{posts_directory}/{post.name}")
 
     feed.rss_file(f"{output_directory}/{posts_directory}/rss.xml", pretty=True)
