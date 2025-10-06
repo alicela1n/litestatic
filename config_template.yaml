@@ -1,2 +1,8 @@
 blog_post_generation: True
-index_page_title: 
+index_page_title:
+
+# Needed for RSS feed generation
+generate_rss_feed: False
+site_url:
+language: en
+feed_description:

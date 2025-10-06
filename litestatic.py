@@ -12,6 +12,7 @@ markdown = Markdown(extensions=['codehilite'])
 import pygments
 import yaml
 import argparse
+from feedgen.feed import FeedGenerator
 
 # Each post is a markdown file which gets parsed into an object which contains it's metadata, date,
 # and HTML content (converted from the Markdown).
@@ -120,6 +121,26 @@ def generate_post_index(posts, site_directory, templates_directory, posts_direct
         print(f"Generating {output_directory}/{posts_directory}/index.html")
         output_file.write(template.render(page_title="Posts", **posts_data))
 
+# generate_rss_feed: Generate an RSS feed and populate it with your blog posts
+def generate_rss_feed(posts, feed_title, feed_description, site_url, language, output_directory, site_directory, posts_directory):
+    feed = FeedGenerator()
+    feed.title(feed_title)
+    feed.description(feed_description)
+    feed.language(language)
+    feed.id(f"{site_url}/posts/rss")
+    feed.link( href=f"{site_url}/posts", rel='self')
+    for post in posts:
+        feed_entry = feed.add_entry()
+        feed_entry.id(f"{site_url}/{posts_directory}/rss/{posts.index(post)}")
+        feed_entry.title(post.title)
+        feed_entry.description(post.title)
+        feed_entry.link(href=f"{site_url}/{posts_directory}/{post.name}")
+
+    if not os.path.exists(f"{output_directory}/{posts_directory}/rss"):
+        os.makedirs(f"{output_directory}/{posts_directory}/rss")
+
+    feed.rss_file(f"{output_directory}/{posts_directory}/rss/rss.xml", pretty=True)
+
 # copy_files_to_out(): Copy the files in the files directory to the output directory
 def copy_files_to_out(site_directory, files_directory, output_directory):
     shutil.copytree(f"{site_directory}/{files_directory}", output_directory, symlinks=False, ignore=None, copy_function=shutil.copy2, ignore_dangling_symlinks=False, dirs_exist_ok=True)
@@ -153,6 +174,14 @@ def main(arguments):
         posts = generate_posts(site_directory, posts_directory)
         generate_post_files(posts, site_directory, templates_directory, posts_directory, output_directory)
         generate_post_index(posts, site_directory, templates_directory, posts_directory, output_directory)
+
+    if config["generate_rss_feed"] == True:
+        site_url = config["site_url"]
+        language = config["language"]
+        feed_description = config["feed_description"]
+        if not index_page_title:
+            index_page_title = "site_url"
+        generate_rss_feed(posts, index_page_title, feed_description, site_url, language, output_directory, site_directory, posts_directory)
 
     copy_files_to_out(site_directory, files_directory, output_directory)
 

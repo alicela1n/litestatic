@@ -1,3 +1,4 @@
+feedgen
 marko
 python-frontmatter
 python-liquid
