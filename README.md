@@ -44,9 +44,9 @@ $ git submodule update --init
 $ cp site-template site
 ```
 
-Next, edit the site how you see fit
+Next, edit the site how you see fit.
 
-Finally, run `litestatic.py` to generate a website:
+Finally, to generate a website run:
 ```
 $ python3 litestatic.py (site_directory) (output_directory)
 ```
