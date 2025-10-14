@@ -128,6 +128,7 @@ def generate_rss_feed(posts, feed_title, feed_description, site_url, language, o
     feed.language(language)
     feed.id(f"posts")
     feed.link( href=f"{site_url}/{posts_directory}", rel='self')
+    # Use post metadata for RSS feed
     for post in posts:
         feed_entry = feed.add_entry()
         feed_entry.id(f"{post.name}")
@@ -153,7 +154,7 @@ def main(arguments):
         print("Provide a site directory or create one using the site_template!")
         exit();
 
-    output_directory = "out"
+    output_directory = args.output_directory
     if not os.path.exists(output_directory):
         os.makedirs(output_directory)
 
@@ -166,6 +167,7 @@ def main(arguments):
     generate_index_page(index_page_title, site_directory, templates_directory, output_directory)
     generate_html_pages(site_directory, templates_directory, output_directory)
 
+    # Fall back to posts if posts_directory not set
     if config["blog_post_generation"] == True:
         if config["posts_directory"]:
             posts_directory = config["posts_directory"]
@@ -176,10 +178,12 @@ def main(arguments):
         generate_post_files(posts, site_directory, templates_directory, posts_directory, output_directory)
         generate_post_index(posts, site_directory, templates_directory, posts_directory, output_directory)
 
+    # RSS feed generation
     if config["generate_rss_feed"] == True:
         site_url = config["site_url"]
         language = config["language"]
         feed_description = config["feed_description"]
+        # Get the index_page_title from the site url if not set explicitly
         if not index_page_title:
             index_page_title = f"{site_url}"
         generate_rss_feed(posts, index_page_title, feed_description, site_url, language, output_directory, site_directory, posts_directory)
