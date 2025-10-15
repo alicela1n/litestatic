@@ -3,3 +3,5 @@ site
 .DS_Store
 __pycache__
 config.yaml
+venv
+.venv
