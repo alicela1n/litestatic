@@ -133,11 +133,11 @@ def generate_rss_feed(posts, feed_title, feed_description, site_url, language, o
         feed_entry = feed.add_entry()
         feed_entry.id(f"{post.name}")
         feed_entry.title(post.title)
-        feed_entry.description(post.html)
+        feed_entry.content(content=post.html, type='text/html')
         feed_entry.pubDate(post.date)
         feed_entry.link(href=f"{posts_directory}/{post.name}")
 
-    feed.rss_file(f"{output_directory}/{posts_directory}/rss.xml", pretty=True)
+    feed.atom_file(f"{output_directory}/{posts_directory}/rss.xml", pretty=True)
 
 # copy_files_to_out(): Copy the files in the files directory to the output directory
 def copy_files_to_out(site_directory, files_directory, output_directory):
