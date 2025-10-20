@@ -135,7 +135,7 @@ def generate_rss_feed(posts, feed_title, feed_description, site_url, url_prefix,
         feed_entry.title(post.title)
         feed_entry.content(content=post.html, type='text/html')
         feed_entry.pubDate(post.date)
-        feed_entry.link(href=f"{site_url}/{posts_directory}/{post.name}")
+        feed_entry.link(href=f"{url_prefix}{site_url}/{posts_directory}/{post.name}")
 
     feed.atom_file(f"{output_directory}/{posts_directory}/rss.xml", pretty=True)
 
