@@ -121,7 +121,7 @@ def generate_post_index(posts, site_directory, templates_directory, posts_direct
         output_file.write(template.render(page_title="Posts", **posts_data))
 
 # generate_rss_feed: Generate an RSS feed and populate it with your blog posts
-def generate_rss_feed(posts, feed_title, feed_description, site_url, language, output_directory, site_directory, posts_directory):
+def generate_rss_feed(posts, feed_title, feed_description, site_url, url_prefix, language, output_directory, posts_directory):
     feed = FeedGenerator()
     feed.title(feed_title)
     feed.description(feed_description)
@@ -135,7 +135,7 @@ def generate_rss_feed(posts, feed_title, feed_description, site_url, language, o
         feed_entry.title(post.title)
         feed_entry.content(content=post.html, type='text/html')
         feed_entry.pubDate(post.date)
-        feed_entry.link(href=f"{posts_directory}/{post.name}")
+        feed_entry.link(href=f"{site_url}/{posts_directory}/{post.name}")
 
     feed.atom_file(f"{output_directory}/{posts_directory}/rss.xml", pretty=True)
 
@@ -181,12 +181,13 @@ def main(arguments):
     # RSS feed generation
     if config["generate_rss_feed"] == True:
         site_url = config["site_url"]
+        url_prefix = config["url_prefix"]
         language = config["language"]
         feed_description = config["feed_description"]
         # Get the index_page_title from the site url if not set explicitly
         if not index_page_title:
             index_page_title = f"{site_url}"
-        generate_rss_feed(posts, index_page_title, feed_description, site_url, language, output_directory, site_directory, posts_directory)
+        generate_rss_feed(posts, index_page_title, feed_description, site_url, url_prefix, language, output_directory, posts_directory)
 
     copy_files_to_out(site_directory, files_directory, output_directory)
 
