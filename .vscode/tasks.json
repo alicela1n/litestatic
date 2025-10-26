@@ -6,7 +6,7 @@
         {
             "label": "Build",
             "type": "shell",
-            "command": "python3 litestatic.py site out",
+            "command": "python3 -m build ${workspaceFolder}",
             "options": {
                 "cwd": "${workspaceFolder}"
             },
@@ -17,9 +17,9 @@
             }
         },
         {
-            "label": "Launch Python Web Server",
+            "label": "Install Using Pip",
             "type": "shell",
-            "command": "python3 -m http.server -d out",
+            "command": "python3 -m pip install ${workspaceFolder}",
             "options": {
                 "cwd": "${workspaceFolder}"
             }

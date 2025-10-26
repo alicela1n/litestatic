@@ -1,10 +1,1 @@
-blog_post_generation: True
-index_page_title:
-posts_directory: posts
-
-# Needed for RSS feed generation
-generate_rss_feed: False
-site_url:
-url_prefix: # Example: http:// or https:// or https://www. (if you use http to https redirection you you could use http here for better compatibility with proxy servers)
-language: en
-feed_description:
+src/litestatic/config_template.yaml

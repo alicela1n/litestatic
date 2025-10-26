@@ -4,7 +4,7 @@
 Tiny lightweight static site generator written in Python that uses markdown and liquid to generate a website.
 
 # How it works
-The way it works is simple by design. The `generate.py` script checks for a `site` directory, which is your website's source directory. A template `site_template` is provided as a submodule, which can be copied and modified for your site. The `(site_directory)/templates` directory contains [liquid](https://shopify.github.io/liquid/) templates for generating the html skeleton of your website. [Markdown](https://www.markdownguide.org/) is used for the webpage contents. The index.md is the markdown file that generates the front page of the website.
+The way it works is simple by design. The `litestatic` script checks for a `site` directory, which is your website's source directory. A template `site_template` is provided as a submodule, which can be copied and modified for your site. The `(site_directory)/templates` directory contains [liquid](https://shopify.github.io/liquid/) templates for generating the html skeleton of your website. [Markdown](https://www.markdownguide.org/) is used for the webpage contents. The index.md is the markdown file that generates the front page of the website.
 
 You can put markdown files in the site directory and have them generated as `(site_directory)/(page name)`. You can also put html in the markdown files and it will render in the body.To customize the html outside the body use templates. For javascript you can source your scripts either in the markdown files or html template. You can also have blog-style posts by putting markdown files in the `site/(posts_directory)/` directory. `posts_directory` is by default `posts`.
 
@@ -38,17 +38,27 @@ First you need to install the requirements:
 $ pip3 install -r requirements.txt
 ```
 
+Next, install litestatic using pip:
+```
+$ python3 -m pip install .
+```
+
+Alternatively, if you want to run litestatic inside the source directory use the provided script:
+```
+$ ./litestatic
+```
+
 Next, either provide a site directory or use the template:
 ```
 $ git submodule update --init
-$ cp site-template site
+$ cp site-template (site_location)
 ```
 
 Next, edit the site how you see fit.
 
 Finally, to generate a website run:
 ```
-$ python3 litestatic.py (site_directory) (output_directory)
+$ litestatic (site_directory) (output_directory)
 ```
 
 To view your website locally, run a web server:

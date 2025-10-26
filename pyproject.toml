@@ -1,0 +1,45 @@
+[build-system]
+requires = ["setuptools >= 77.0.3"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "litestatic"
+version = "0.0.1"
+authors = [
+  { name="Alice Sell", email="alice@alicela1n.space" },
+]
+description = "Tiny lightweight static site generator written in Python that uses markdown and liquid to generate a website."
+readme = {file = "README.md", content-type = "text/markdown"}
+requires-python = ">=3.9"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+    "Environment :: Web Environment",
+]
+license = "MIT"
+license-files = ["LICEN[CS]E*"]
+
+[tool.setuptools]
+packages = ["litestatic"]
+
+[tool.setuptools.package-dir]
+litestatic = "src/litestatic"
+
+[tool.setuptools.package-data]
+"litestatic" = ["*.yaml"]
+
+dependencies = [
+    "feedgen",
+    "marko",
+    "python-frontmatter",
+    "python-liquid",
+    "pygments",
+    "pyyaml"
+]
+
+[project.scripts]
+litestatic = "litestatic:main"
+
+[project.urls]
+Homepage = "https://gitlab.com/alicela1n/litestatic"
+Issues = "https://gitlab.com/alicela1n/litestatic/issues"

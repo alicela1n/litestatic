@@ -12,6 +12,7 @@ markdown = Markdown(extensions=['codehilite'])
 import pygments
 import yaml
 import argparse
+from importlib.resources import files
 from feedgen.feed import FeedGenerator
 
 # Each post is a markdown file which gets parsed into an object which contains it's metadata, date,
@@ -22,6 +23,11 @@ class Post:
         self.title = title
         self.date = datetime.datetime.strptime(date, '%Y-%m-%d %H:%M').replace(tzinfo=datetime.timezone.utc)
         self.html = html
+
+# Command line argument parser
+parser = argparse.ArgumentParser()
+parser.add_argument("site_directory", type=str, help="The website source directory to be generated")
+parser.add_argument("output_directory", type=str, help="The directory to output the generated website")
 
 # generate_index_page(): Produce the index.html file which will be the front page of the website
 def generate_index_page(index_page_title, site_directory, templates_directory, output_directory):
@@ -52,7 +58,7 @@ def generate_html_pages(site_directory, templates_directory, output_directory):
             page_buffer = frontmatter.load(md_file)
             page_body = markdown.convert(page_buffer.content)
             page_name = str(page.with_suffix(''))
-            page_name = page_name.split('/')[1]
+            page_name = page_name.split('/')[-1]
 
         if not page_name == "index": # Exclude index
             if not os.path.exists(f"{output_directory}/{page_name}"):
@@ -77,7 +83,7 @@ def generate_posts(site_directory, posts_directory):
             # Remove the extension from the post name
             post_name = str(post.with_suffix(''))
             # Remove the site_directory and post_directory from the post name
-            post_name = post_name.split('/')[2]
+            post_name = post_name.split('/')[-1]
 
             post_buffer = frontmatter.load(md_file)
             post_title = post_buffer['title']
@@ -144,10 +150,15 @@ def copy_files_to_out(site_directory, files_directory, output_directory):
     shutil.copytree(f"{site_directory}/{files_directory}", output_directory, symlinks=False, ignore=None, copy_function=shutil.copy2, ignore_dangling_symlinks=False, dirs_exist_ok=True)
 
 # main(): Main function
-def main(arguments):
+def main():
+    args = parser.parse_args()
     site_directory = args.site_directory
     files_directory = "files"
     templates_directory = "templates"
+    config_template_path = files("litestatic").joinpath("config_template.yaml")
+
+    if site_directory == ".":
+        site_directory = Path.cwd()
 
     if not os.path.exists(site_directory):
         print("No site directory found!")
@@ -161,7 +172,8 @@ def main(arguments):
     if os.path.isfile(f"{site_directory}/config.yaml"):
         config = yaml.safe_load(Path(f"{site_directory}/config.yaml").read_text()) # Read the config file
     else:
-        config = yaml.safe_load(Path("config_template.yaml").read_text()) # Fall back to config_template.yaml
+        config = yaml.safe_load(Path(config_template_path).read_text()) # Fall back to config_template.yaml
+
     
     index_page_title = config["index_page_title"]
     generate_index_page(index_page_title, site_directory, templates_directory, output_directory)
@@ -192,8 +204,4 @@ def main(arguments):
     copy_files_to_out(site_directory, files_directory, output_directory)
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser()
-    parser.add_argument("site_directory", type=str, help="The website source directory to be generated")
-    parser.add_argument("output_directory", type=str, help="The directory to output the generated website")
-    args = parser.parse_args()
-    main(args)
+    main()

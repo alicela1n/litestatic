@@ -1,0 +1,4 @@
+#!/bin/bash
+
+# Bash script for calling litestatic
+python3 src/litestatic/litestatic.py $@
