@@ -65,3 +65,11 @@ To view your website locally, run a web server:
 ```
 $ python3 -m http.server -d (output_directory)
 ```
+
+# Screenshots
+Here are some screenshots of the example site to demonstrate what litestatic can do.
+
+![Home Page]("/images/Screenshot 2025-12-07 at 8.44.44 AM.png")
+![Posts Page]("/images/Screenshot 2025-12-07 at 8.44.47 AM.png")
+![Example Post]("/images/Screenshot 2025-12-07 at 8.44.38 AM.png")
+![About Page]("/images/Screenshot 2025-12-07 at 8.44.52 AM.png")
