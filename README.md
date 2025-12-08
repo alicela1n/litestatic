@@ -32,7 +32,14 @@ If you change the `posts_directory` you must also rename it in your site directo
 # RSS Feed Generation
 You can generate an RSS feed `(posts_directory)/rss.xml` by setting `rss_feed_generation` in the `config.yaml` to `True`. You need to set a `site_url`, `language`, and `feed_description`. If you do not set an `index_page_title` it uses the `site_url` as the RSS feed title.
 
-# How to use
+# Installation
+If you want to install litestatic from the pip repositories, run:
+```
+$ pip3 install litestatic
+```
+
+If youw want to install litestatic from this repo, follow these instructions:
+
 First you need to install the requirements:
 ```
 $ pip3 install -r requirements.txt
@@ -43,12 +50,9 @@ Next, install litestatic using pip:
 $ python3 -m pip install .
 ```
 
-Alternatively, if you want to run litestatic inside the source directory use the provided script:
-```
-$ ./litestatic
-```
+# How to use
 
-Next, either provide a site directory or use the template:
+Provide your own site directory or use the template and modify it to your needs:
 ```
 $ git submodule update --init
 $ cp site-template (site_location)
