@@ -19,16 +19,7 @@ classifiers = [
 license = "MIT"
 license-files = ["LICEN[CS]E*"]
 
-[tool.setuptools]
-packages = ["aerographite"]
-
-[tool.setuptools.package-dir]
-aerographite = "src/aerographite"
-
-[tool.setuptools.package-data]
-"aerographite" = ["*.yaml"]
-
-install_requires = [
+dependencies = [
     "feedgen",
     "marko",
     "python-frontmatter",
@@ -37,6 +28,14 @@ install_requires = [
     "pyyaml"
 ]
 
+[tool.setuptools]
+packages = ["aerographite"]
+
+[tool.setuptools.package-dir]
+aerographite = "src/aerographite"
+
+[tool.setuptools.package-data]
+"aerographite" = ["*.yaml"]
 [project.scripts]
 aerographite = "aerographite:main"
 
