@@ -23,10 +23,10 @@ license-files = ["LICEN[CS]E*"]
 packages = ["aerographite"]
 
 [tool.setuptools.package-dir]
-litestatic = "src/aerographite"
+aerographite = "src/aerographite"
 
 [tool.setuptools.package-data]
-"litestatic" = ["*.yaml"]
+"aerographite" = ["*.yaml"]
 
 install_requires = [
     "feedgen",
