@@ -1,4 +1,4 @@
 #!/bin/bash
 
-# Bash script for calling litestatic
-python3 src/litestatic/litestatic.py $@
+# Bash script for calling aerographite
+python3 src/aerographite/aerographite.py $@
