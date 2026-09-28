@@ -1,4 +1,4 @@
-from .litestatic import main
+from .aerographite import main
 
 if __name__ == '__main__':
     main()

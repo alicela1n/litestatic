@@ -1,6 +1,0 @@
-feedgen
-marko
-python-frontmatter
-python-liquid
-pygments
-pyyaml

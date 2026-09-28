@@ -155,7 +155,7 @@ def main():
     site_directory = args.site_directory
     files_directory = "files"
     templates_directory = "templates"
-    config_template_path = files("litestatic").joinpath("config_template.yaml")
+    config_template_path = files("aerographite").joinpath("config_template.yaml")
 
     if site_directory == ".":
         site_directory = Path.cwd()
