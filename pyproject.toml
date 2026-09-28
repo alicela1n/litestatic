@@ -20,10 +20,10 @@ license = "MIT"
 license-files = ["LICEN[CS]E*"]
 
 [tool.setuptools]
-packages = ["litestatic"]
+packages = ["aerographite"]
 
 [tool.setuptools.package-dir]
-litestatic = "src/litestatic"
+litestatic = "src/aerographite"
 
 [tool.setuptools.package-data]
 "litestatic" = ["*.yaml"]
@@ -38,8 +38,8 @@ install_requires = [
 ]
 
 [project.scripts]
-litestatic = "litestatic:main"
+aerographite = "aerographite:main"
 
 [project.urls]
-Homepage = "https://gitlab.com/alicela1n/litestatic"
-Issues = "https://gitlab.com/alicela1n/litestatic/issues"
+Homepage = "https://gitlab.com/alicela1n/aerographite"
+Issues = "https://gitlab.com/alicela1n/aerographite/issues"
